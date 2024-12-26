@@ -43,6 +43,18 @@ class Order(models.Model):
 	
 	def __repr__(self):
 		return f"Order(customer={self.customer}, date_ordered={self.date_ordered}, complete={self.complete}, transaction_id={self.transaction_id})"
+	
+	@property
+	def get_cart_price_total(self):
+		orderitems = self.orderitem_set.all()
+		total_price = sum([item.get_total for item in orderitems])
+		return total_price
+	
+	@property
+	def get_cart_items_total(self):
+		orderitems = self.orderitem_set.all()
+		total_items = sum([item.quantity for item in orderitems])
+		return total_items
 
 class OrderItem(models.Model):
 	product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
@@ -56,6 +68,11 @@ class OrderItem(models.Model):
 	def __repr__(self):
 		return f"OrderItem(product={self.product}, order={self.order}, quantity={self.quantity}, date_added={self.date_added})"
  
+	@property
+	def get_total(self):
+		total = self.product.price * self.quantity
+		return total
+
 class ShippingAddress(models.Model):
 	customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
 	order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
