@@ -3,6 +3,19 @@
 [Link](https://www.youtube.com/playlist?list=PL-51WBLyFTg0omnamUjL1TCVov7yDTRng) - Tutorial on Python Django<br>
 [Link](https://codewithsteps.herokuapp.com/project/cd0492f3-ee93-471a-9dbc-b047233336c3) - Blog
 
+The project showcases a modern e-commerce implementation with key features:
+- User authentication and guest user support
+- Real-time cart updates using JavaScript
+- Cookie-based cart management for guest users
+- Automated order processing system
+- Flexible product management (digital/physical products)
+- Secure transaction handling
+- Responsive design for multiple devices
+- Complete order history tracking
+- Shipping address management
+
+The architecture follows Django best practices with clear separation of models, views, and utilities, making it both maintainable and scalable.
+
 --------
 
 Screenshots
