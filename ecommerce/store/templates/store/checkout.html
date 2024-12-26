@@ -79,6 +79,7 @@
 
 <script type="text/javascript">
 	var SHIPPING_DATA = '{{ order.shipping }}'
+	var TOTAL = '{{ order.get_cart_price_total | floatformat:2 }}'
 </script>
 
 <script type="text/javascript" src="{% static 'js/checkout.js' %}"></script>

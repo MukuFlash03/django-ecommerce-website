@@ -26,4 +26,29 @@ document.getElementById('make-payment').addEventListener('click', function (e) {
 
 function submitFormData() {
 	console.log('Payment button clicked')
+
+	var userFormData = {
+		'name': null,
+		'email': null,
+		'total': TOTAL,
+	}
+
+	var shippingInfo = {
+		'address': null,
+		'city': null,
+		'state': TOTAL,
+		'zipcode': TOTAL,
+	}
+
+	if (SHIPPING_DATA != 'False') {
+		shippingInfo.address = form.address.value
+		shippingInfo.city = form.city.value
+		shippingInfo.state = form.state.value
+		shippingInfo.zipcode = form.zipcode.value
+	}
+
+	if (user != 'AnonymousUser') {
+		userFormData.name = form.address.name
+		userFormData.email = form.address.email
+	}
 }
