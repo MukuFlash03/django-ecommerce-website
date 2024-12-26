@@ -45,6 +45,16 @@ class Order(models.Model):
 		return f"Order(customer={self.customer}, date_ordered={self.date_ordered}, complete={self.complete}, transaction_id={self.transaction_id})"
 	
 	@property
+	def shipping(self):
+		shipping = False
+		orderitems = self.orderitem_set.all()
+		for item in orderitems:
+			if not item.product.digital:
+				shipping = True
+		
+		return shipping
+	
+	@property
 	def get_cart_price_total(self):
 		orderitems = self.orderitem_set.all()
 		total_price = sum([item.get_total for item in orderitems])
