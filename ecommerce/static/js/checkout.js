@@ -77,6 +77,10 @@ function submitFormData() {
 		.then((data) => {
 			console.log('Success: ', data)
 			alert('Payment successful!')
+
+			cart = {}
+			document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
+
 			window.location.href = '/'
 		})
 }
