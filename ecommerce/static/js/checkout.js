@@ -13,6 +13,10 @@ if (SHIPPING_DATA == 'False' && user != 'AnonymousUser') {
 
 var form = document.getElementById('form')
 
+csrftoken = form.getElementsByTagName('input')[0].value
+console.log("New CSRF token: ", form.getElementsByTagName('input')[0].value);
+
+
 form.addEventListener('submit', function (e) {
 	e.preventDefault()
 	console.log('Form submitted')
