@@ -36,8 +36,8 @@ function submitFormData() {
 	var shippingInfo = {
 		'address': null,
 		'city': null,
-		'state': TOTAL,
-		'zipcode': TOTAL,
+		'state': null,
+		'zipcode': null,
 	}
 
 	if (SHIPPING_DATA != 'False') {
@@ -47,8 +47,32 @@ function submitFormData() {
 		shippingInfo.zipcode = form.zipcode.value
 	}
 
-	if (user != 'AnonymousUser') {
-		userFormData.name = form.address.name
-		userFormData.email = form.address.email
+	if (user == 'AnonymousUser') {
+		userFormData.name = form.name.value
+		userFormData.email = form.email.value
 	}
+
+	var url = '/process_order/'
+
+	fetch(url, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			'X-CSRFToken': csrftoken,
+		},
+		body: JSON.stringify({
+			'userFormData': userFormData,
+			'shippingInfo': shippingInfo,
+		})
+	})
+
+		.then((response) => {
+			return response.json()
+		})
+
+		.then((data) => {
+			console.log('Success: ', data)
+			alert('Payment successful!')
+			window.location.href = '/'
+		})
 }
