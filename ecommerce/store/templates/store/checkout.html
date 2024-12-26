@@ -71,7 +71,7 @@
 			{% endfor %}
 
 			<h5>Items: {{ order.get_cart_items_total }}</h5>
-			<h5>Total: ${{ order.get_cart_price_total }}</h5>
+			<h5>Total: ${{ order.get_cart_price_total | floatformat:2 }}</h5>
 		</div>
 	</div>
 </div>
