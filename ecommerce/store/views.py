@@ -38,6 +38,12 @@ def cart(request):
 		for item in cart:
 			cartItems += cart[item]['quantity']
 
+			product = Product.objects.get(id=item)
+			total = (product.price * cart[item]['quantity'])
+
+			order['get_cart_price_total'] += total
+			order['get_cart_items_total'] += cart[item]['quantity']
+
 	context = {'items': items, 'order': order, 'cartItems': cartItems}
 	return render(request, 'store/cart.html', context)
 
